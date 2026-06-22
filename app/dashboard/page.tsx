@@ -10,6 +10,7 @@ import { Loader2, Package, ShieldCheck, Download, Plus, FileText, Send, User, Be
 import RFQConfigurator from '@/components/RFQConfigurator';
 import TechnicalIcon from '@/components/TechnicalIcon';
 import { ConsolePanel } from '@/components/engineering';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function DashboardPage() {
   const { user, loading: authLoading, logout } = useAuth();
