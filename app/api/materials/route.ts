@@ -1,0 +1,54 @@
+import { NextRequest, NextResponse } from "next/server";
+import { secureRoute } from "@/lib/api-wrapper";
+import { db } from "@/lib/db";
+import { UserRole } from "@prisma/client";
+import { z } from "zod";
+
+const createMaterialSchema = z.object({
+  code: z.string().min(2).max(20),
+  name: z.string().min(2).max(100),
+  grade: z.string().max(50).optional(),
+  properties: z.record(z.string(), z.any()).optional(),
+}).strict();
+
+export const GET = secureRoute(
+  { action: "get_materials", rateLimitLimit: 50 },
+  async (req: NextRequest, session: any) => {
+    if (!session?.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const materials = await db.material.findMany({
+      where: { deletedAt: null },
+      orderBy: { code: "asc" },
+    });
+
+    return NextResponse.json(materials);
+  }
+);
+
+export const POST = secureRoute(
+  { action: "create_material", rateLimitLimit: 20 },
+  async (req: NextRequest, session: any) => {
+    if (!session?.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const role = session.user.role as UserRole;
+    if (role !== UserRole.OWNER && role !== UserRole.ADMIN) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    const body = await req.json();
+    const parsed = createMaterialSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Validation failed", details: parsed.error.format() }, { status: 422 });
+    }
+
+    const material = await db.material.create({
+      data: parsed.data,
+    });
+
+    return NextResponse.json(material, { status: 201 });
+  }
+);
