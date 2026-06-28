@@ -1,0 +1,723 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-06-23T15:26:38.275Z",
+  "data": {
+    "users": [
+      {
+        "id": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "name": "Prema Owner",
+        "email": "owner@prema.com",
+        "emailVerified": null,
+        "passwordHash": "$2b$10$n3NdjqefeVDNZnrCSJfp2uIUIb8u69HlB/q18gONU34CYtz3PsLMa",
+        "image": null,
+        "role": "ADMIN",
+        "createdAt": "2026-06-22T18:25:22.619Z",
+        "updatedAt": "2026-06-23T05:34:03.384Z",
+        "deletedAt": null
+      },
+      {
+        "id": "6ae5e107-b9b7-473c-ae87-19b6af97965f",
+        "name": "Prema Admin",
+        "email": "admin@prema.com",
+        "emailVerified": null,
+        "passwordHash": "$2b$10$n3NdjqefeVDNZnrCSJfp2uIUIb8u69HlB/q18gONU34CYtz3PsLMa",
+        "image": null,
+        "role": "ADMIN",
+        "createdAt": "2026-06-22T18:25:22.645Z",
+        "updatedAt": "2026-06-23T05:34:03.446Z",
+        "deletedAt": null
+      },
+      {
+        "id": "4387af30-3635-4929-8365-f2b58a8d4ec2",
+        "name": "Prod Engineer",
+        "email": "production@prema.com",
+        "emailVerified": null,
+        "passwordHash": "$2b$10$n3NdjqefeVDNZnrCSJfp2uIUIb8u69HlB/q18gONU34CYtz3PsLMa",
+        "image": null,
+        "role": "ADMIN",
+        "createdAt": "2026-06-22T18:25:22.648Z",
+        "updatedAt": "2026-06-23T05:34:03.451Z",
+        "deletedAt": null
+      },
+      {
+        "id": "91e1fd8c-c816-4b70-930b-6e0404a3b9c5",
+        "name": "Quality Inspector",
+        "email": "quality@prema.com",
+        "emailVerified": null,
+        "passwordHash": "$2b$10$n3NdjqefeVDNZnrCSJfp2uIUIb8u69HlB/q18gONU34CYtz3PsLMa",
+        "image": null,
+        "role": "ADMIN",
+        "createdAt": "2026-06-22T18:25:22.652Z",
+        "updatedAt": "2026-06-23T05:34:03.456Z",
+        "deletedAt": null
+      },
+      {
+        "id": "38f6d6df-e082-48a9-b52b-841cc152ba54",
+        "name": "Sales Desk",
+        "email": "sales@prema.com",
+        "emailVerified": null,
+        "passwordHash": "$2b$10$n3NdjqefeVDNZnrCSJfp2uIUIb8u69HlB/q18gONU34CYtz3PsLMa",
+        "image": null,
+        "role": "ADMIN",
+        "createdAt": "2026-06-22T18:25:22.656Z",
+        "updatedAt": "2026-06-23T05:34:03.460Z",
+        "deletedAt": null
+      },
+      {
+        "id": "e5b287c2-59d9-4f48-b5f0-450876da67c2",
+        "name": "Acme Corp Customer",
+        "email": "customer@client.com",
+        "emailVerified": null,
+        "passwordHash": "$2b$10$n3NdjqefeVDNZnrCSJfp2uIUIb8u69HlB/q18gONU34CYtz3PsLMa",
+        "image": null,
+        "role": "CUSTOMER",
+        "createdAt": "2026-06-22T18:25:22.658Z",
+        "updatedAt": "2026-06-23T05:34:03.466Z",
+        "deletedAt": null
+      }
+    ],
+    "customers": [
+      {
+        "id": "8c970f2e-4600-402f-966f-826de539ead0",
+        "userId": "e5b287c2-59d9-4f48-b5f0-450876da67c2",
+        "name": "Acme Corp Customer",
+        "email": "customer@client.com",
+        "companyName": "Acme Corp",
+        "contactPhone": "+1234567890",
+        "industry": "Aerospace",
+        "country": "India",
+        "state": "Karnataka",
+        "city": "Bengaluru",
+        "address": "123 Manufacturing Way, Tech City",
+        "gstNumber": null,
+        "website": null,
+        "linkedIn": null,
+        "pinCode": null,
+        "notes": null,
+        "adminNotes": null,
+        "tags": [],
+        "leadScore": "LOW",
+        "createdAt": "2026-06-22T18:25:22.662Z",
+        "updatedAt": "2026-06-23T05:34:03.478Z",
+        "deletedAt": null
+      }
+    ],
+    "locations": [],
+    "activities": [
+      {
+        "id": "1647399c-5c45-41c1-95a2-ce1446b5aef2",
+        "customerId": "8c970f2e-4600-402f-966f-826de539ead0",
+        "activityType": "LOGIN",
+        "description": "User logged in from IP 127.0.0.1. (First login)",
+        "timestamp": "2026-06-23T05:43:39.596Z"
+      },
+      {
+        "id": "abdd1edf-03d0-4e98-be01-35e2c1faddee",
+        "customerId": "8c970f2e-4600-402f-966f-826de539ead0",
+        "activityType": "LOGIN",
+        "description": "User logged in from IP 127.0.0.1.",
+        "timestamp": "2026-06-23T05:45:43.767Z"
+      },
+      {
+        "id": "6d777d93-446f-4566-bbef-1849d60283e5",
+        "customerId": "8c970f2e-4600-402f-966f-826de539ead0",
+        "activityType": "LOGIN",
+        "description": "User logged in from IP 127.0.0.1.",
+        "timestamp": "2026-06-23T05:52:45.081Z"
+      },
+      {
+        "id": "57dd25f0-2233-4e0d-a2c7-4d106a0adafe",
+        "customerId": "8c970f2e-4600-402f-966f-826de539ead0",
+        "activityType": "LOGIN",
+        "description": "User logged in from IP 127.0.0.1.",
+        "timestamp": "2026-06-23T06:00:38.402Z"
+      },
+      {
+        "id": "1498c62a-659a-4f5b-a933-58bd01a79787",
+        "customerId": "8c970f2e-4600-402f-966f-826de539ead0",
+        "activityType": "LOGIN",
+        "description": "User logged in from IP 127.0.0.1.",
+        "timestamp": "2026-06-23T06:06:43.207Z"
+      }
+    ],
+    "leads": [],
+    "inquiries": [],
+    "rfqs": [],
+    "orders": [],
+    "orderUpdates": [],
+    "notifications": [
+      {
+        "id": "6e024c6a-451a-4908-ad7b-388202108253",
+        "userId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1. [First Time Login]",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:43:39.742Z",
+        "updatedAt": "2026-06-23T05:43:39.742Z"
+      },
+      {
+        "id": "2f11e94e-40b4-4ae8-aeb4-326842563536",
+        "userId": "6ae5e107-b9b7-473c-ae87-19b6af97965f",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1. [First Time Login]",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:43:39.743Z",
+        "updatedAt": "2026-06-23T05:43:39.743Z"
+      },
+      {
+        "id": "c0abff25-fe2e-4a13-b8d7-b34b2315fd1c",
+        "userId": "38f6d6df-e082-48a9-b52b-841cc152ba54",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1. [First Time Login]",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:43:39.747Z",
+        "updatedAt": "2026-06-23T05:43:39.747Z"
+      },
+      {
+        "id": "3d838db6-23f1-4fc8-9e7e-44888c67baa8",
+        "userId": "4387af30-3635-4929-8365-f2b58a8d4ec2",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1. [First Time Login]",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:43:39.745Z",
+        "updatedAt": "2026-06-23T05:43:39.745Z"
+      },
+      {
+        "id": "ab3cb770-da2a-421d-a749-693e23af4260",
+        "userId": "91e1fd8c-c816-4b70-930b-6e0404a3b9c5",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1. [First Time Login]",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:43:39.746Z",
+        "updatedAt": "2026-06-23T05:43:39.746Z"
+      },
+      {
+        "id": "b0abc994-149e-4541-a3ef-16289b0d06d2",
+        "userId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:45:43.793Z",
+        "updatedAt": "2026-06-23T05:45:43.793Z"
+      },
+      {
+        "id": "dc843b04-c356-43f0-ac1b-240c66fbdf68",
+        "userId": "6ae5e107-b9b7-473c-ae87-19b6af97965f",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:45:43.793Z",
+        "updatedAt": "2026-06-23T05:45:43.793Z"
+      },
+      {
+        "id": "a2f693cd-bc4d-427b-be05-b86e509fbdd7",
+        "userId": "4387af30-3635-4929-8365-f2b58a8d4ec2",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:45:43.794Z",
+        "updatedAt": "2026-06-23T05:45:43.794Z"
+      },
+      {
+        "id": "56a27de1-1d24-44cb-87de-dd15b6ddcc70",
+        "userId": "38f6d6df-e082-48a9-b52b-841cc152ba54",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:45:43.794Z",
+        "updatedAt": "2026-06-23T05:45:43.794Z"
+      },
+      {
+        "id": "cc07c892-5597-478f-8da4-d0fda671e0c5",
+        "userId": "91e1fd8c-c816-4b70-930b-6e0404a3b9c5",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:45:43.794Z",
+        "updatedAt": "2026-06-23T05:45:43.794Z"
+      },
+      {
+        "id": "a0c60d95-af76-41d2-aabd-02f76fcb2a39",
+        "userId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:52:45.146Z",
+        "updatedAt": "2026-06-23T05:52:45.146Z"
+      },
+      {
+        "id": "1d6681b9-e333-4111-b7cd-e51fb216f832",
+        "userId": "4387af30-3635-4929-8365-f2b58a8d4ec2",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:52:45.147Z",
+        "updatedAt": "2026-06-23T05:52:45.147Z"
+      },
+      {
+        "id": "9805a825-c816-4d9c-b270-d63d0e963f05",
+        "userId": "6ae5e107-b9b7-473c-ae87-19b6af97965f",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:52:45.147Z",
+        "updatedAt": "2026-06-23T05:52:45.147Z"
+      },
+      {
+        "id": "3c44d4b7-474e-4dff-9c82-cbdaab0e951d",
+        "userId": "91e1fd8c-c816-4b70-930b-6e0404a3b9c5",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:52:45.147Z",
+        "updatedAt": "2026-06-23T05:52:45.147Z"
+      },
+      {
+        "id": "07da24b9-42b7-4e62-bdae-984312cac2f4",
+        "userId": "38f6d6df-e082-48a9-b52b-841cc152ba54",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T05:52:45.148Z",
+        "updatedAt": "2026-06-23T05:52:45.148Z"
+      },
+      {
+        "id": "bb44a15f-e809-4037-81ef-83d9d61e85bd",
+        "userId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:00:38.442Z",
+        "updatedAt": "2026-06-23T06:00:38.442Z"
+      },
+      {
+        "id": "71c9d903-04dd-4087-8d96-8ad40a3c9442",
+        "userId": "6ae5e107-b9b7-473c-ae87-19b6af97965f",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:00:38.442Z",
+        "updatedAt": "2026-06-23T06:00:38.442Z"
+      },
+      {
+        "id": "164540df-1e71-40bd-a8e4-82e58b3ce8d3",
+        "userId": "4387af30-3635-4929-8365-f2b58a8d4ec2",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:00:38.442Z",
+        "updatedAt": "2026-06-23T06:00:38.442Z"
+      },
+      {
+        "id": "3150c7fb-11a2-4313-99e7-7ed2a19c53b4",
+        "userId": "91e1fd8c-c816-4b70-930b-6e0404a3b9c5",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:00:38.442Z",
+        "updatedAt": "2026-06-23T06:00:38.442Z"
+      },
+      {
+        "id": "c8d1def3-5fd5-4082-bbd1-9aac7d94bdfc",
+        "userId": "38f6d6df-e082-48a9-b52b-841cc152ba54",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:00:38.444Z",
+        "updatedAt": "2026-06-23T06:00:38.444Z"
+      },
+      {
+        "id": "863cde7b-06f4-4e0d-b57b-08e9e5450b4a",
+        "userId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:06:43.447Z",
+        "updatedAt": "2026-06-23T06:06:43.447Z"
+      },
+      {
+        "id": "792bbd32-e860-4e6d-adba-b6ea07dfe4c3",
+        "userId": "91e1fd8c-c816-4b70-930b-6e0404a3b9c5",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:06:43.454Z",
+        "updatedAt": "2026-06-23T06:06:43.454Z"
+      },
+      {
+        "id": "be521a53-786c-40c5-a181-3767dd72c61e",
+        "userId": "6ae5e107-b9b7-473c-ae87-19b6af97965f",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:06:43.453Z",
+        "updatedAt": "2026-06-23T06:06:43.453Z"
+      },
+      {
+        "id": "b7774e0b-0366-4a28-a265-a93202dd786a",
+        "userId": "38f6d6df-e082-48a9-b52b-841cc152ba54",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:06:43.458Z",
+        "updatedAt": "2026-06-23T06:06:43.458Z"
+      },
+      {
+        "id": "a83fc63c-2dfd-44f0-bcd2-4b76ae9cb238",
+        "userId": "4387af30-3635-4929-8365-f2b58a8d4ec2",
+        "title": "Customer Login: Acme Corp",
+        "message": "Acme Corp Customer logged in from IP 127.0.0.1.",
+        "isRead": false,
+        "createdAt": "2026-06-23T06:06:43.454Z",
+        "updatedAt": "2026-06-23T06:06:43.454Z"
+      }
+    ],
+    "auditLogs": [],
+    "materials": [
+      {
+        "id": "6be0975d-356b-421a-99eb-7aa782bc0744",
+        "code": "EN8",
+        "name": "Medium Carbon Steel",
+        "grade": "080M40",
+        "properties": {
+          "carbon": "0.40%",
+          "hardness": "201 HB",
+          "yieldStrength": "280 MPa"
+        },
+        "createdAt": "2026-06-22T18:25:22.670Z",
+        "updatedAt": "2026-06-23T05:34:03.489Z",
+        "deletedAt": null
+      },
+      {
+        "id": "232c309b-525f-4fb0-809f-9deb3da2f1ca",
+        "code": "EN19",
+        "name": "Alloy Steel",
+        "grade": "709M40",
+        "properties": {
+          "chromium": "1.00%",
+          "hardness": "250 HB",
+          "yieldStrength": "650 MPa"
+        },
+        "createdAt": "2026-06-22T18:25:22.675Z",
+        "updatedAt": "2026-06-23T05:34:03.500Z",
+        "deletedAt": null
+      },
+      {
+        "id": "7fcb23f1-cf41-4c46-bd12-098590cc98ea",
+        "code": "EN24",
+        "name": "Nickel Chromium Molybdenum Steel",
+        "grade": "817M40",
+        "properties": {
+          "nickel": "1.50%",
+          "hardness": "280 HB",
+          "tensileStrength": "850 MPa"
+        },
+        "createdAt": "2026-06-22T18:25:22.678Z",
+        "updatedAt": "2026-06-23T05:34:03.504Z",
+        "deletedAt": null
+      },
+      {
+        "id": "57935c88-ed6f-4a63-95dd-f7ab6882917f",
+        "code": "SS304",
+        "name": "Stainless Steel 304",
+        "grade": "A2",
+        "properties": {
+          "nickel": "8.00%",
+          "chromium": "18.00%",
+          "yieldStrength": "215 MPa"
+        },
+        "createdAt": "2026-06-22T18:25:22.681Z",
+        "updatedAt": "2026-06-23T05:34:03.509Z",
+        "deletedAt": null
+      },
+      {
+        "id": "c5e4e331-bbc3-478d-8873-eb35c7180e5f",
+        "code": "SS316",
+        "name": "Stainless Steel 316",
+        "grade": "A4",
+        "properties": {
+          "nickel": "10.00%",
+          "molybdenum": "2.00%",
+          "yieldStrength": "290 MPa"
+        },
+        "createdAt": "2026-06-22T18:25:22.685Z",
+        "updatedAt": "2026-06-23T05:34:03.513Z",
+        "deletedAt": null
+      }
+    ],
+    "heatTreatments": [
+      {
+        "id": "f5748935-de98-4ae1-b05f-9f5cdc03b456",
+        "processName": "Nitriding",
+        "description": "Surface hardening introducing nitrogen",
+        "parameters": {
+          "temperature": "500-550C",
+          "surfaceHardness": "900 HV"
+        },
+        "createdAt": "2026-06-22T18:25:22.719Z",
+        "updatedAt": "2026-06-23T05:34:03.555Z"
+      },
+      {
+        "id": "62ed9a5c-9ec0-4549-a6d6-95840d241bf3",
+        "processName": "Hardening",
+        "description": "Quenching and tempering alloy steels",
+        "parameters": {
+          "media": "Oil",
+          "temperature": "830-860C",
+          "targetHardness": "55 HRC"
+        },
+        "createdAt": "2026-06-22T18:25:22.724Z",
+        "updatedAt": "2026-06-23T05:34:03.563Z"
+      },
+      {
+        "id": "8fa33458-3586-4fec-b816-8488cba6b2c2",
+        "processName": "Carburizing",
+        "description": "Case hardening steel via carbon diffusion",
+        "parameters": {
+          "caseDepth": "0.8 - 1.2 mm",
+          "temperature": "900-950C"
+        },
+        "createdAt": "2026-06-22T18:25:22.727Z",
+        "updatedAt": "2026-06-23T05:34:03.567Z"
+      }
+    ],
+    "surfaceFinishes": [
+      {
+        "id": "4b455950-72d2-4a7c-9144-15661e676c14",
+        "code": "Ra0.4",
+        "valueRa": 0.4,
+        "description": "Very fine ground finish, high-precision hydraulic cylinders",
+        "createdAt": "2026-06-22T18:25:22.705Z",
+        "updatedAt": "2026-06-23T05:34:03.534Z"
+      },
+      {
+        "id": "83b66a11-8449-4c3b-ae6d-fcc7e3ff6036",
+        "code": "Ra0.8",
+        "valueRa": 0.8,
+        "description": "Standard ground/polished finish, bearing journals",
+        "createdAt": "2026-06-22T18:25:22.710Z",
+        "updatedAt": "2026-06-23T05:34:03.543Z"
+      },
+      {
+        "id": "025381ec-ccc1-4b87-a220-0328349efa3e",
+        "code": "Ra1.6",
+        "valueRa": 1.6,
+        "description": "Smooth machined finish, general moving parts",
+        "createdAt": "2026-06-22T18:25:22.713Z",
+        "updatedAt": "2026-06-23T05:34:03.546Z"
+      },
+      {
+        "id": "0a896439-ff50-4526-8087-0b2d92b969d7",
+        "code": "Ra3.2",
+        "valueRa": 3.2,
+        "description": "Medium rough machined finish, structural brackets",
+        "createdAt": "2026-06-22T18:25:22.717Z",
+        "updatedAt": "2026-06-23T05:34:03.551Z"
+      }
+    ],
+    "fits": [
+      {
+        "id": "9b10572d-2446-462c-ad01-96a4b83ec1be",
+        "code": "H7/g6",
+        "type": "Clearance",
+        "holeLimit": "+21 / 0 µm",
+        "shaftLimit": "-7 / -20 µm",
+        "createdAt": "2026-06-22T18:25:22.690Z",
+        "updatedAt": "2026-06-23T05:34:03.517Z"
+      },
+      {
+        "id": "50b5d3ac-de25-46a3-bbc8-914e38a707f0",
+        "code": "H7/k6",
+        "type": "Transition",
+        "holeLimit": "+21 / 0 µm",
+        "shaftLimit": "+15 / +2 µm",
+        "createdAt": "2026-06-22T18:25:22.695Z",
+        "updatedAt": "2026-06-23T05:34:03.524Z"
+      },
+      {
+        "id": "4f2d9ca6-e461-4257-9af1-47a7ceac05ad",
+        "code": "H7/p6",
+        "type": "Interference",
+        "holeLimit": "+21 / 0 µm",
+        "shaftLimit": "+42 / +29 µm",
+        "createdAt": "2026-06-22T18:25:22.700Z",
+        "updatedAt": "2026-06-23T05:34:03.528Z"
+      }
+    ],
+    "tolerances": [
+      {
+        "id": "65bca36e-bf81-4b2a-902a-2157c9a601da",
+        "standard": "ISO 2768",
+        "classification": "medium",
+        "rangeMin": 0.5,
+        "rangeMax": 3,
+        "value": 0.1,
+        "createdAt": "2026-06-22T18:25:22.769Z",
+        "updatedAt": "2026-06-22T18:25:22.769Z"
+      }
+    ],
+    "threadStandards": [
+      {
+        "id": "865a5c6b-a071-45b8-9553-7f39e6d932c2",
+        "designation": "M6",
+        "pitch": 1,
+        "majorDiameter": 6,
+        "type": "Metric",
+        "createdAt": "2026-06-22T18:25:22.729Z",
+        "updatedAt": "2026-06-23T05:34:03.571Z"
+      },
+      {
+        "id": "dd7eb9ed-4049-4d1b-9b92-f411bee54dad",
+        "designation": "M8",
+        "pitch": 1.25,
+        "majorDiameter": 8,
+        "type": "Metric",
+        "createdAt": "2026-06-22T18:25:22.734Z",
+        "updatedAt": "2026-06-23T05:34:03.578Z"
+      },
+      {
+        "id": "936c8287-7689-46a9-87be-6963d7ce4882",
+        "designation": "M10",
+        "pitch": 1.5,
+        "majorDiameter": 10,
+        "type": "Metric",
+        "createdAt": "2026-06-22T18:25:22.737Z",
+        "updatedAt": "2026-06-23T05:34:03.581Z"
+      },
+      {
+        "id": "14bf707a-dfcf-4acb-aca8-246c991233f2",
+        "designation": "M12",
+        "pitch": 1.75,
+        "majorDiameter": 12,
+        "type": "Metric",
+        "createdAt": "2026-06-22T18:25:22.740Z",
+        "updatedAt": "2026-06-23T05:34:03.585Z"
+      }
+    ],
+    "bearings": [
+      {
+        "id": "ee1a6c4f-4ea6-48de-814b-4c5603bc32c8",
+        "modelNumber": "6205",
+        "type": "Deep Groove Ball Bearing",
+        "innerDiameter": 25,
+        "outerDiameter": 52,
+        "width": 15,
+        "dynamicLoad": 14,
+        "staticLoad": 7.8,
+        "createdAt": "2026-06-22T18:25:22.743Z",
+        "updatedAt": "2026-06-23T05:34:03.589Z"
+      },
+      {
+        "id": "e8dcd6d4-22a4-477a-a4c5-e2d05c3bce78",
+        "modelNumber": "6206",
+        "type": "Deep Groove Ball Bearing",
+        "innerDiameter": 30,
+        "outerDiameter": 62,
+        "width": 16,
+        "dynamicLoad": 19.5,
+        "staticLoad": 11.3,
+        "createdAt": "2026-06-22T18:25:22.747Z",
+        "updatedAt": "2026-06-23T05:34:03.596Z"
+      },
+      {
+        "id": "b6083921-899b-4d10-b03d-96c757a6b969",
+        "modelNumber": "6308",
+        "type": "Deep Groove Ball Bearing",
+        "innerDiameter": 40,
+        "outerDiameter": 90,
+        "width": 23,
+        "dynamicLoad": 42.3,
+        "staticLoad": 24,
+        "createdAt": "2026-06-22T18:25:22.750Z",
+        "updatedAt": "2026-06-23T05:34:03.600Z"
+      }
+    ],
+    "gearData": [],
+    "inspectionRecords": [],
+    "certificates": [],
+    "uploadedFiles": [
+      {
+        "id": "2dd6f26e-6a06-4d7b-86cb-c747db6fa43d",
+        "filename": "material_compliance_cert.pdf",
+        "url": "https://prema-bucket.s3.amazonaws.com/orders/1782193739843-material_compliance_cert.pdf",
+        "fileType": "STEP",
+        "size": 500000,
+        "ownerId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "rfqId": null,
+        "orderId": null,
+        "createdAt": "2026-06-23T05:49:01.569Z",
+        "updatedAt": "2026-06-23T05:49:01.569Z",
+        "deletedAt": null
+      },
+      {
+        "id": "4cc43d5e-1f39-49cc-98a3-32060f06511a",
+        "filename": "bearing_bracket_drawing.dwg",
+        "url": "https://prema-bucket.s3.amazonaws.com/orders/1782193795191-bearing_bracket_drawing.dwg",
+        "fileType": "DWG",
+        "size": 500000,
+        "ownerId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "rfqId": null,
+        "orderId": null,
+        "createdAt": "2026-06-23T05:49:55.797Z",
+        "updatedAt": "2026-06-23T05:49:55.797Z",
+        "deletedAt": null
+      },
+      {
+        "id": "1c9eb5ce-1bf0-4262-86f8-af54bf5c9242",
+        "filename": "bearing_bracket_drawing.dwg",
+        "url": "https://prema-bucket.s3.amazonaws.com/orders/1782193836007-bearing_bracket_drawing.dwg",
+        "fileType": "DXF",
+        "size": 500000,
+        "ownerId": "4bc8bb8a-d50d-45be-8d82-eeda9ad221ad",
+        "rfqId": null,
+        "orderId": null,
+        "createdAt": "2026-06-23T05:50:50.959Z",
+        "updatedAt": "2026-06-23T05:50:50.959Z",
+        "deletedAt": null
+      }
+    ],
+    "machines": [
+      {
+        "id": "036b0056-db1c-4ecb-a0aa-0d221605743c",
+        "name": "Mazak Quick Turn 250",
+        "code": "CNC-LATHE-01",
+        "capacity": {
+          "power": "15kW",
+          "maxLength": "500mm",
+          "maxDiameter": "350mm"
+        },
+        "status": "ACTIVE",
+        "createdAt": "2026-06-22T18:25:22.753Z",
+        "updatedAt": "2026-06-23T05:34:03.603Z"
+      },
+      {
+        "id": "19e77e1a-1b32-4324-a4c9-ecd48bc6d690",
+        "name": "Haas VF-3 3-Axis",
+        "code": "CNC-MILL-02",
+        "capacity": {
+          "travelX": "1016mm",
+          "travelY": "508mm",
+          "travelZ": "635mm"
+        },
+        "status": "ACTIVE",
+        "createdAt": "2026-06-22T18:25:22.758Z",
+        "updatedAt": "2026-06-23T05:34:03.611Z"
+      },
+      {
+        "id": "5286fbab-08e9-460e-bb70-e55f2408c93d",
+        "name": "Fanuc Robocut C400iB",
+        "code": "EDM-WIRE-01",
+        "capacity": {
+          "maxWeight": "500kg",
+          "precision": "2µm"
+        },
+        "status": "MAINTENANCE",
+        "createdAt": "2026-06-22T18:25:22.761Z",
+        "updatedAt": "2026-06-23T05:34:03.615Z"
+      }
+    ],
+    "jobs": [],
+    "componentQuotes": [],
+    "backgroundJobs": []
+  }
+}

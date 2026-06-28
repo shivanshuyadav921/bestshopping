@@ -1,0 +1,108 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: prema_db
+      # Connection pool tuning for production
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+    # Optimized for single-server deployment
+    command: >
+      postgres
+        -c shared_buffers=128MB
+        -c effective_cache_size=384MB
+        -c work_mem=4MB
+        -c maintenance_work_mem=64MB
+        -c max_connections=50
+        -c log_min_duration_statement=200
+        -c log_statement=mod
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.5"
+    command: >
+      redis-server
+        --maxmemory 100mb
+        --maxmemory-policy allkeys-lru
+        --appendonly yes
+        --save 60 1000
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Database
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/prema_db?schema=public&connection_limit=15&pool_timeout=10"
+      # Redis
+      REDIS_URL: "redis://redis:6379"
+      # Auth
+      AUTH_SECRET: "${AUTH_SECRET}"
+      NEXTAUTH_URL: "${NEXTAUTH_URL:-http://localhost:3000}"
+      # Email
+      RESEND_API_KEY: "${RESEND_API_KEY}"
+      EMAIL_FROM: "${EMAIL_FROM:-PREMA <noreply@prema-manufacturing.com>}"
+      NOTIFICATION_RECEIVER_EMAIL: "${NOTIFICATION_RECEIVER_EMAIL:-owner@prema-manufacturing.com}"
+      # Storage (optional)
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
+      AWS_S3_BUCKET: "${AWS_S3_BUCKET:-}"
+      AWS_REGION: "${AWS_REGION:-us-east-1}"
+      # CORS
+      ALLOWED_ORIGINS: "${ALLOWED_ORIGINS:-}"
+      # DB Pool (explicit)
+      DB_POOL_MIN: "2"
+      DB_POOL_MAX: "15"
+      DB_POOL_TIMEOUT: "10000"
+      # Observability
+      SENTRY_DSN: "${SENTRY_DSN:-}"
+      # Worker
+      DISABLE_INLINE_WORKER: "${DISABLE_INLINE_WORKER:-false}"
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "2.0"
+
+volumes:
+  pgdata:
+  redisdata:

@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Decoupled Subfolder Ignore Rules
+frontend/.next/
+frontend/node_modules/
+frontend/.env.local
+frontend/.env.production
+frontend/.env
+
+backend/dist/
+backend/node_modules/
+backend/.env.local
+backend/.env.production
+backend/.env
+backend/prisma/generated/
+

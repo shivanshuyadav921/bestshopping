@@ -1,169 +1,208 @@
-# PREMA — Engineering Intelligence Platform & Manufacturing Operating System Backend
+# PREMA Engineering Intelligence Platform
 
-This repository houses the secure, modular backend for the PREMA manufacturing intelligence platform. It features structured modules, Auth.js (NextAuth) RBAC authorization, event-driven email notifications, cryptographic CAD drawing URL signatures, sliding-window rate-limiting, and deep database auditing.
-
----
-
-## 🛠 Tech Stack
-- **Core**: Next.js 15+, TypeScript, React
-- **Persistence**: PostgreSQL, Prisma ORM
-- **Authentication**: Auth.js / NextAuth (Credentials + Google OAuth)
-- **Email Service**: Resend Email API
-- **Validation**: Zod
-- **Infrastructure Utilities**: Node EventEmitter, In-memory Sliding Window Rate Limiter (Swaps to Redis if `REDIS_URL` is set)
+A secure, high-performance precision manufacturing operating system built with Next.js 16 (App Router), React 19, Prisma 6, PostgreSQL 15, Redis 7, NextAuth.js v5, and Tailwind CSS 4.
 
 ---
 
-## 📦 Root Directory Structure
-All backend modules and services reside in a single Next.js project root:
-```text
-├── app/                  # Next.js App Router (APIs, routes)
-│   └── api/              # API endpoints (All server routes)
-├── components/           # (Immutable Presentation Layer placeholders)
-├── modules/              # Feature modules (auth, orders, rfq, search, etc.)
-│   ├── auth/             # Credentials, RBAC, and Config helpers
-│   ├── audit/            # Entity state diff logging service
-│   ├── orders/           # Order states lifecycle and transitions logic
-│   └── ...               # (materials, engineering, files, notifications)
-├── lib/                  # Shared core utilities (CORS, logger, errors)
-├── db/                   # Database Client instantiator
-├── prisma/               # Prisma database schema and seeding script
-├── README.md             # This file
-├── package.json          # Main dependency package configuration
-└── tsconfig.json         # TypeScript configuration
+## 1. System Architecture
+
+The platform uses a decoupled frontend/backend paradigm hosted as a unified Next.js package:
+
+- **API Handlers**: Strict REST operations validated by Zod schemas, secured with role-based authorization (`ADMIN` / `CUSTOMER`), and wrapped with CORS, rate limiting, CDN cache headers, and OpenTelemetry tracing.
+- **Database**: Prisma Client with read/write splitting, read replica circuit breaker, and slow query detection.
+- **Authentication**: NextAuth.js v5 with secure HttpOnly JWT session tokens (30-day max age).
+- **Event Bus**: Hybrid Redis Pub/Sub + EventEmitter for cross-instance event distribution.
+- **Background Queue**: Database-backed persistent job queue with crash recovery, exponential backoff, and Dead Letter Queue.
+- **Caching**: Redis primary with in-memory fallback + CDN-compatible cache headers.
+- **Rate Limiting**: Dual-layer — IP-based (60 req/min) + per-user (30 req/min) with Redis sliding window.
+- **File Storage**: AWS S3 presigned URLs with offline mock fallback.
+- **Observability**: Sentry error tracking, OpenTelemetry spans, structured JSON logging with request IDs.
+- **CDN/Edge**: Cache-Control, CDN-Cache-Control, Vercel-CDN-Cache-Control, and Surrogate-Control headers for edge caching.
+
+---
+
+## 2. Directory Structure
+
+```
+/
+├── app/                        # Next.js App Router (Routing, APIs, views)
+│   ├── api/                    # Security-validated route handlers
+│   ├── auth/                   # Secure authentication forms (Login / Registration)
+│   ├── command-center/         # Engineering reference workspace
+│   ├── dashboard/              # Customer and administrative dashboard
+│   ├── machines/               # Machine Showcase — fleet specs, animations, timeline
+│   ├── copilot/                # AI Engineering Copilot — RAG-powered chat
+│   ├── tools/                  # Engineering Intelligence Tools — 10 calculators
+│   ├── product/                # Interactive product exhibit view
+│   ├── products/               # Products museum gallery view
+│   └── timeline/               # Orders timeline interface
+├── components/                 # React UI components
+│   ├── command-center/         # Reference tables, filters, search utilities
+│   ├── engineering/            # Primitives, widgets, telemetry panels
+│   ├── timeline/               # Timeline card rendering
+│   └── ui/                     # Basic visual building blocks (shadcn/ui)
+├── db/                         # Prisma database client singleton (read/write split + circuit breaker)
+├── docs/                       # Engineering manuals (see "Documentation" below)
+├── hooks/                      # Custom React hooks (telemetry caching, search queries)
+├── lib/                        # Cross-cutting systems
+│   ├── event-bus.ts            # Hybrid Redis Pub/Sub + EventEmitter
+│   ├── cache.ts                # Redis + in-memory cache
+│   ├── queue.ts                # Background job queue with metrics
+│   ├── api-wrapper.ts          # secureRoute() HOF (CORS, rate limit, auth, cache, OTel)
+│   ├── headers.ts              # CDN/cache header utilities
+│   ├── storage.ts              # AWS S3 presigned URLs + file validation
+│   ├── rate-limit.ts           # Dual-layer rate limiting
+│   └── ...                     # Logger, security, geocoder, errors, CORS, Sentry, OTel
+├── modules/                    # Domain model layers
+│   ├── ai/                     # AI Engineering Assistant
+│   ├── auth/                   # Auth config + RBAC
+│   ├── notifications/          # Email (Resend), WhatsApp, event listeners
+│   ├── orders/                 # Order management
+│   ├── rfq/                    # RFQ management
+│   └── search/                 # Cross-table fuzzy search
+├── prisma/                     # Database schemas, migrations, seeds
+├── public/                     # Static assets (PWA manifest, service worker)
+├── scripts/                    # Operational scripts (backup, benchmark, worker)
+└── types/                      # TypeScript specifications
 ```
 
 ---
 
-## 🚀 Quick Start (Local Setup)
+## 3. Environment Configurations
 
-### 1. Install Dependencies
-Ensure you have Node.js 18+ installed. Run:
+Copy `.env.example` to `.env.local` and populate these parameters:
+
 ```bash
-npm install
-```
+# Required: Database Connection
+DATABASE_URL="postgresql://user:password@localhost:5432/prema_db?schema=public"
 
-### 2. Set Up Environment Variables
-Copy `.env.example` to `.env.local` (Next.js automatically reads this file in development):
-```bash
-cp .env.example .env.local
-```
-Fill out the variables inside `.env.local`:
-- `DATABASE_URL`: PostgreSQL connection string.
-- `AUTH_SECRET`: Random 32-byte secret (generate using `openssl rand -base64 32`).
-- `RESEND_API_KEY`: API key for email notifications (defaults to `re_mock_12345` for local console logs).
+# Optional: Read Replica (for horizontal scaling)
+DATABASE_REPLICA_URL="postgresql://user:password@replica:5432/prema_db"
 
-### 3. Database Initialization & Seeding
-Configure your PostgreSQL instance and sync the Prisma schema:
-```bash
-# Generate Prisma Client
-npx prisma generate
+# Required: NextAuth Cryptography Secret
+AUTH_SECRET="your_nextauth_cryptography_secret_string"
+NEXTAUTH_URL="http://localhost:3000"
 
-# Apply migrations / push schema
-npx prisma db push
+# Required: Notifications (Resend API)
+RESEND_API_KEY="re_your_api_key"
+EMAIL_FROM="PREMA <noreply@prema-manufacturing.com>"
+NOTIFICATION_RECEIVER_EMAIL="owner@prema-manufacturing.com"
 
-# Seed engineering catalog and default users
-npx prisma db seed
-```
+# Recommended: Redis (for distributed caching, rate limiting, event bus)
+REDIS_URL="redis://localhost:6379"
 
-**Seeded Accounts (Password: `password123`):**
-- Owner: `owner@prema.com`
-- Admin: `admin@prema.com`
-- Production Engineer: `production@prema.com`
-- Quality Engineer: `quality@prema.com`
-- Sales Desk: `sales@prema.com`
-- Customer Client: `customer@client.com`
+# Optional: Object Storage (Amazon S3)
+AWS_ACCESS_KEY_ID="your_access_key"
+AWS_SECRET_ACCESS_KEY="your_secret_key"
+AWS_S3_BUCKET="your_bucket"
+AWS_REGION="us-east-1"
 
-### 4. Run Development Server
-```bash
-npm run dev
-```
-The API is now running locally at `http://localhost:3000`.
+# Optional: CORS (comma-separated domains)
+ALLOWED_ORIGINS="http://localhost:3000"
 
----
+# Optional: Error Tracking
+SENTRY_DSN="your_sentry_dsn"
 
-## 🧪 Running Tests
-Unit and integration tests cover RBAC authorization, sliding-window rate limiters, token-based signed URL validation, Zod payload rules, and audit diff calculators.
-```bash
-npm test
-```
-*Note: Under the hood, this executes Node's native runner: `npx tsx --test modules/orders/orders.test.ts modules/auth/security.test.ts`.*
+# Optional: Database Pool Tuning
+DB_POOL_MIN="2"
+DB_POOL_MAX="10"
+DB_POOL_TIMEOUT="10000"
 
----
-
-## 🏗 Build Verification
-Verify type safety and compilation compliance with zero errors:
-```bash
-# Run Linter
-npm run lint
-
-# Build production bundle
-npm run build
+# Optional: Worker Control
+DISABLE_INLINE_WORKER="false"
 ```
 
 ---
 
-## 🛰 Health & Version Monitoring
-External load balancers, uptime monitors, or Kubernetes probes can hit these public endpoints:
-- **Health Check**: `GET /api/health`
-  - Probes database latency using `SELECT 1` with a 3-second timeout.
-  - Returns `200 OK` (healthy) or `503 Service Unavailable` (db down).
-- **Version Endpoint**: `GET /api/version`
-  - Returns semantic software version and server timestamp.
+## 4. Setup & Operations
 
----
+### Local Development Setup
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Start local PostgreSQL + Redis (Docker)**:
+   ```bash
+   docker compose up db redis -d
+   ```
+3. **Run migrations**:
+   ```bash
+   npx prisma db push --force-reset
+   ```
+4. **Seed database**:
+   ```bash
+   npx prisma db seed
+   ```
+5. **Start development server**:
+   ```bash
+   npm run dev
+   ```
 
-## ☁️ Deployment Instructions
-This project has a **Deployment-First Architecture**. It can be deployed directly from the repository root to any provider without changing directory settings.
-
-### 1. Vercel
-1. Link your repository.
-2. Select **Next.js** framework.
-3. Configure Environment Variables in the project settings.
-4. Click **Deploy**. (Build and DB Client generation are handled automatically).
-
-### 2. Render / Railway
-Set the following settings:
-- **Build Command**: `npm install && npx prisma generate && npm run build`
-- **Start Command**: `npm run start`
-- Ensure all environment variables are mapped under settings.
-
-### 3. Docker (VPS or Self-Hosted)
-Build and run the project using a standard Node container:
-```dockerfile
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npx prisma generate
-RUN npm run build
-
-FROM node:18-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=builder /app ./
-EXPOSE 3000
-CMD ["npm", "run", "start"]
-```
-Build command:
+### Production Deployment
 ```bash
-docker build -t prema-backend .
-docker run -p 3000:3000 --env-file .env prema-backend
+# Full stack with Docker Compose
+docker compose up --build -d
+docker compose exec app npx prisma migrate deploy
+docker compose exec app npx prisma db seed
 ```
 
 ---
 
-## 🔍 Troubleshooting & Common Errors
+## 5. Development Commands
 
-### 1. Database Connection Timeout / P1001 Error
-- **Cause**: Database instance is offline or connection string is misconfigured.
-- **Fix**: Check `DATABASE_URL` matches your credentials. Probe connection status by hitting `/api/health`.
+```bash
+# Prisma
+npx prisma generate              # Generate Prisma client types
+npx prisma db push               # Push schema to database
+npx prisma db push --force-reset # Reset database (DESTRUCTIVE)
+npx prisma db seed               # Seed database
 
-### 2. Missing AUTH_SECRET / JWT Error
-- **Cause**: NextAuth throws an error at startup.
-- **Fix**: Generate and add `AUTH_SECRET="..."` in your env settings.
+# Build & Quality
+npm run lint                     # ESLint checks
+npx tsc --noEmit                 # TypeScript type checking
+npm test                         # Run test suites
+npm run build                    # Production build
+npm start                        # Start production server
 
-### 3. Rate Limit Block (HTTP 429)
-- **Cause**: Exceeded permitted request thresholds (e.g. 15 RFQ creations/min, 30 login tries).
-- **Fix**: Check response header `X-RateLimit-Reset` to find seconds until reset. For clustered deploys, define `REDIS_URL` to coordinate rate limits.
+# Backup
+npx tsx scripts/backup.ts        # Generate database backup
+```
+
+---
+
+## 6. Business Workflow & Features (Phases 1–21)
+
+1. **Customer Onboarding & Profiles** (Phases 1–5): Demographic metrics, geolocation with 3-layer fallback (manual → GPS → IP geocoder), lead scoring, CRM tags, admin notes.
+2. **Unified Inbox** (Phases 6–8): Live notifications for registrations, logins, uploads, quotations, certificates.
+3. **Leads Management & CRM** (Phases 9–13): Auto-lead creation, tag assignments (`Automotive`, `Medical`, etc.), lead scoring classifier, internal admin notes.
+4. **Communication Hub** (Phase 14): Contact/callback forms, WhatsApp integration, transactional email templates, conversation histories.
+5. **Download Center & Customer Portal** (Phase 15): CMM metrology reports, material test certificates, drawings, sandbox iframe previews, quotation drawers, customer timeline.
+6. **Engineering Intelligence Tools** (Phase 16): 10 interactive calculators — Bearing, Thread, Tolerance, Fits, Surface Finish, Unit Converter, Material Assistant, Gear Geometry, Engineering Notes, Quick Lookup. Uses TechnicalIcon system, responsive layout.
+7. **Analytics Center & Location Heatmaps** (Phase 17): SVG geographic heatmaps, top-customer leaderboards, growth metrics, coordinate overrides.
+8. **Traceability & Certificate Verification** (Phase 19): Anonymous verification portal, CMM inspection grids, SVG QR code generator, 15-minute token-based downloads.
+9. **AI Layer & Assistant** (Phase 20): Engineering Assistant chat workbench, smart search matching orders/clients, simulated RAG trace metadata.
+9b. **AI Copilot** (Phase 29): Enhanced AI Engineering Copilot with RAG-powered knowledge retrieval (12 sources), natural language intent classification, material recommendations, tolerance suggestions, drawing understanding stub, voice input (Web Speech API), text-to-speech output, RBAC-scoped data access, and future MCP integration placeholder.
+10. **Machine Showcase** (Phase 18): Interactive fleet showcase — Mazak, Haas, Sodick EDM, Zeiss/Hexagon inspection equipment with specs, SVG animations, and acquisition timeline.
+11. **AI Memory Documentation** (Phase 21): Self-documenting architecture for future AI/engineer onboarding — 7 comprehensive guides.
+
+### Infrastructure Features
+- **Horizontal Scaling**: Redis Pub/Sub event bus, distributed rate limiting, shared cache
+- **CDN/Edge Caching**: Cache headers compatible with Cloudflare, CloudFront, Vercel Edge
+- **Database Resilience**: Read replica circuit breaker, slow query detection, connection pooling
+- **Background Jobs**: Persistent queue with crash recovery, exponential backoff, DLQ, metrics
+- **Observability**: Health endpoint with infrastructure status, Sentry, OpenTelemetry, structured logging
+
+---
+
+## 7. Platform Documentation
+
+| Guide | Description |
+|-------|-------------|
+| **[AI Context Reference](docs/AI_CONTEXT.md)** | Primary onboarding guide — architecture paradigms, directory structure, coding conventions, known issues, roadmap |
+| **[System Architecture](docs/ARCHITECTURE.md)** | Component diagrams, request lifecycle, event bus, DB read/write splitting, queue flow |
+| **[Database Manual](docs/DATABASE.md)** | Schema topology, ER diagram, model reference, indexes, cascading rules, seed data |
+| **[API Reference](docs/API_REFERENCE.md)** | All endpoints, request/response formats, rate limiting, caching strategies |
+| **[Business Workflows](docs/BUSINESS_WORKFLOW.md)** | RFQ-to-delivery pipeline, onboarding, notifications, CRM, certificate verification |
+| **[Deployment Guide](docs/DEPLOYMENT.md)** | Environment variables, Docker Compose, Vercel/Railway, VPS, TLS, multi-instance |
+| **[Operations Manual](docs/OPERATIONS.md)** | Health checks, structured logging, slow queries, backup procedures, crash recovery |
+| **[Troubleshooting Manual](docs/TROUBLESHOOTING.md)** | Database, Redis, auth, email, S3, build, queue, rate limiting, performance issues |
