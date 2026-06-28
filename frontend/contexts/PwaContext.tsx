@@ -137,14 +137,37 @@ export function PwaProvider({ children }: { children: React.ReactNode }) {
 
     // Register PWA Service Worker on Startup
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((reg) => {
-          console.log("[PWA System] Service Worker registered successfully:", reg.scope);
-        })
-        .catch((err) => {
-          console.error("[PWA System] Service Worker registration failed:", err);
+      if (process.env.NODE_ENV === "development") {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          for (const registration of registrations) {
+            registration.unregister().then((success) => {
+              if (success) {
+                console.log("[PWA System] Unregistered active Service Worker in development mode");
+              }
+            });
+          }
         });
+        if ("caches" in window) {
+          caches.keys().then((names) => {
+            for (const name of names) {
+              caches.delete(name).then((success) => {
+                if (success) {
+                  console.log("[PWA System] Cleared stale Cache Storage:", name);
+                }
+              });
+            }
+          });
+        }
+      } else {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((reg) => {
+            console.log("[PWA System] Service Worker registered successfully:", reg.scope);
+          })
+          .catch((err) => {
+            console.error("[PWA System] Service Worker registration failed:", err);
+          });
+      }
     }
 
     return () => {

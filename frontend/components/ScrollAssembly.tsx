@@ -15,6 +15,32 @@ interface ComponentItem {
   delay: number;
 }
 
+const GEAR_TEETH = [
+  { x1: "170.00", y1: "100.00", x2: "185.00", y2: "100.00" },
+  { x1: "160.62", y1: "135.00", x2: "173.61", y2: "142.50" },
+  { x1: "135.00", y1: "160.62", x2: "142.50", y2: "173.61" },
+  { x1: "100.00", y1: "170.00", x2: "100.00", y2: "185.00" },
+  { x1: "65.00", y1: "160.62", x2: "57.50", y2: "173.61" },
+  { x1: "39.38", y1: "135.00", x2: "26.39", y2: "142.50" },
+  { x1: "30.00", y1: "100.00", x2: "15.00", y2: "100.00" },
+  { x1: "39.38", y1: "65.00", x2: "26.39", y2: "57.50" },
+  { x1: "65.00", y1: "39.38", x2: "57.50", y2: "26.38" },
+  { x1: "100.00", y1: "30.00", x2: "100.00", y2: "15.00" },
+  { x1: "135.00", y1: "39.38", x2: "142.50", y2: "26.38" },
+  { x1: "160.62", y1: "65.00", x2: "173.61", y2: "57.50" }
+];
+
+const STAR_POLYGONS = [
+  { points: "100,100 170.00,100.00 146.19,119.13" },
+  { points: "100,100 149.50,149.50 119.13,146.19" },
+  { points: "100,100 100.00,170.00 80.87,146.19" },
+  { points: "100,100 50.50,149.50 53.81,119.13" },
+  { points: "100,100 30.00,100.00 53.81,80.87" },
+  { points: "100,100 50.50,50.50 80.87,53.81" },
+  { points: "100,100 100.00,30.00 119.13,53.81" },
+  { points: "100,100 149.50,50.50 146.19,80.87" }
+];
+
 const components: ComponentItem[] = [
   {
     id: 'gear',
@@ -31,16 +57,9 @@ const components: ComponentItem[] = [
         <circle cx="100" cy="100" r="70" fill="url(#gearGrad)" />
         <circle cx="100" cy="100" r="40" fill="black" />
         {/* Gear teeth */}
-        {Array.from({ length: 12 }).map((_, i) => {
-          const angle = (i / 12) * Math.PI * 2;
-          const x1 = 100 + Math.cos(angle) * 70;
-          const y1 = 100 + Math.sin(angle) * 70;
-          const x2 = 100 + Math.cos(angle) * 85;
-          const y2 = 100 + Math.sin(angle) * 85;
-          return (
-            <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#6b7280" strokeWidth="4" />
-          );
-        })}
+        {GEAR_TEETH.map((tooth, i) => (
+          <line key={i} x1={tooth.x1} y1={tooth.y1} x2={tooth.x2} y2={tooth.y2} stroke="#6b7280" strokeWidth="4" />
+        ))}
       </svg>
     ),
     delay: 0,
@@ -58,20 +77,15 @@ const components: ComponentItem[] = [
           </radialGradient>
         </defs>
         {/* Star shape */}
-        {Array.from({ length: 8 }).map((_, i) => {
-          const angle = (i / 8) * Math.PI * 2;
-          const x = 100 + Math.cos(angle) * 70;
-          const y = 100 + Math.sin(angle) * 70;
-          return (
-            <polygon
-              key={i}
-              points={`100,100 ${x},${y} ${100 + Math.cos(angle + Math.PI / 8) * 50},${100 + Math.sin(angle + Math.PI / 8) * 50}`}
-              fill="url(#starGrad)"
-              stroke="#9ca3af"
-              strokeWidth="1"
-            />
-          );
-        })}
+        {STAR_POLYGONS.map((polygon, i) => (
+          <polygon
+            key={i}
+            points={polygon.points}
+            fill="url(#starGrad)"
+            stroke="#9ca3af"
+            strokeWidth="1"
+          />
+        ))}
         <circle cx="100" cy="100" r="25" fill="black" />
       </svg>
     ),

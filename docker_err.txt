@@ -1,1 +1,0 @@
-[2026-06-27T17:29:49.681548200Z][Docker Desktop.exe] backend already running, signaling show-dashboard

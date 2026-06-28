@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 interface Message {
     role: "user" | "assistant";
@@ -46,19 +46,27 @@ function formatMarkdown(text: string): string {
 }
 
 export default function AICopilot() {
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            role: "assistant",
-            content: "### PREMA Engineering Copilot\n\nWelcome! I'm your AI-powered engineering assistant. Ask me about materials, tolerances, bearings, threads, fits, surface finishes, gears, DFM guidelines, or order status.\n\n🎤 **Voice input** is available — click the microphone to speak.",
-            suggestions: ["EN24 properties", "M12 thread", "H7/g6 fit", "Gear calculator"],
-            timestamp: new Date(),
-        },
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
     const [isListening, setIsListening] = useState(false);
+    const [isVoiceSupported, setIsVoiceSupported] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const recognitionRef = useRef<any>(null);
+
+    useEffect(() => {
+        setMessages([
+            {
+                role: "assistant",
+                content: "### PREMA Engineering Copilot\n\nWelcome! I'm your AI-powered engineering assistant. Ask me about materials, tolerances, bearings, threads, fits, surface finishes, gears, DFM guidelines, or order status.\n\n🎤 **Voice input** is available — click the microphone to speak.",
+                suggestions: ["EN24 properties", "M12 thread", "H7/g6 fit", "Gear calculator"],
+                timestamp: new Date(),
+            },
+        ]);
+        if (typeof window !== "undefined") {
+            setIsVoiceSupported("SpeechRecognition" in window || "webkitSpeechRecognition" in window);
+        }
+    }, []);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -299,7 +307,7 @@ export default function AICopilot() {
                         </form>
                         <div className="mt-2 flex items-center justify-between text-[9px] text-white/30">
                             <span>RAG-powered with 12 knowledge sources</span>
-                            <span>Voice: {typeof window !== "undefined" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) ? "✅ Available" : "❌ Not supported"}</span>
+                            <span>Voice: {isVoiceSupported ? "✅ Available" : "❌ Not supported"}</span>
                         </div>
                     </div>
                 </div>
