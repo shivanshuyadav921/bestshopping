@@ -5,6 +5,7 @@ import * as React from 'react';
 import { Menu, X, Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme } from "@/contexts/ThemeContext";
 import { useAuth } from "@/hooks/useAuth";
+import Link from 'next/link';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -60,7 +61,7 @@ export default function Header() {
       }`}>
       <div className="container flex items-center justify-between h-20">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <Image
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663778233019/HgWQygy6hcEjZgykeuoFnG/logo-prema-engineering-ayPpa7XkJuSRb6D4x9AaNz.webp"
             alt="PREMA ENGINEERING WORKS"
@@ -72,7 +73,7 @@ export default function Header() {
           <span className="font-display font-bold text-lg tracking-tight hidden sm:inline">
             PREMA
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">

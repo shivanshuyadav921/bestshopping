@@ -1,45 +1,22 @@
-import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import CinematicHero from "@/components/CinematicHero";
 import Capabilities from "@/components/Capabilities";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
 
-// Lazy-load client-heavy interactive components below the fold
-const ScrollAssembly = dynamic(() => import("@/components/ScrollAssembly"), {
-  ssr: true,
-});
-const ProductShowcase = dynamic(() => import("@/components/ProductShowcase"), {
-  ssr: true,
-});
-const Industries = dynamic(() => import("@/components/Industries"), {
-  ssr: true,
-});
-const EngineeringIntelligence = dynamic(() => import("@/components/EngineeringIntelligence"), {
-  ssr: true,
-});
-const QualityVerification = dynamic(() => import("@/components/QualityVerification"), {
-  ssr: true,
-});
-const TechnicalResourceLibrary = dynamic(() => import("@/components/TechnicalResourceLibrary"), {
-  ssr: true,
-});
-const CaseStudies = dynamic(() => import("@/components/CaseStudies"), {
-  ssr: true,
-});
-const Testimonials = dynamic(() => import("@/components/Testimonials"), {
-  ssr: true,
-});
-const EngineeringHistory = dynamic(() => import("@/components/EngineeringHistory"), {
-  ssr: true,
-});
-const EmergencyBreakdownCenter = dynamic(() => import("@/components/EmergencyBreakdownCenter"), {
-  ssr: true,
-});
-const RFQConfigurator = dynamic(() => import("@/components/RFQConfigurator"), {
-  ssr: true,
-});
+const ScrollAssembly = dynamic(() => import("@/components/ScrollAssembly"));
+const ProductShowcase = dynamic(() => import("@/components/ProductShowcase"));
+const Industries = dynamic(() => import("@/components/Industries"));
+const EngineeringIntelligence = dynamic(() => import("@/components/EngineeringIntelligence"));
+const QualityVerification = dynamic(() => import("@/components/QualityVerification"));
+const TechnicalResourceLibrary = dynamic(() => import("@/components/TechnicalResourceLibrary"));
+const CaseStudies = dynamic(() => import("@/components/CaseStudies"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const EngineeringHistory = dynamic(() => import("@/components/EngineeringHistory"));
+const EmergencyBreakdownCenter = dynamic(() => import("@/components/EmergencyBreakdownCenter"));
+const RFQConfigurator = dynamic(() => import("@/components/RFQConfigurator"));
 
 export default function Home() {
   return (

@@ -63,7 +63,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8 relative">
       <div className="grid-pattern absolute inset-0 opacity-[0.03] pointer-events-none" />
 
-      <div className="w-full max-w-md space-y-8 relative z-10 border border-white/10 bg-card p-8 md:p-10 shadow-2xl">
+      <div className="w-full max-w-md space-y-8 relative z-10 border border-border bg-card p-8 md:p-10 shadow-2xl text-foreground">
         {/* Header */}
         <div className="text-center space-y-3">
           <img
@@ -71,10 +71,10 @@ export default function LoginPage() {
             alt="PREMA"
             className="h-12 w-12 mx-auto"
           />
-          <h2 className="text-2xl font-bold tracking-tight text-white font-display uppercase">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground font-display uppercase">
             Platform Sign In
           </h2>
-          <p className="text-xs text-white/50 tracking-wider font-mono">
+          <p className="text-xs text-muted-foreground tracking-wider font-mono">
             PREMA MANUFACTURING OPERATING SYSTEM
           </p>
         </div>
@@ -89,7 +89,7 @@ export default function LoginPage() {
         <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Email */}
           <div className="space-y-2">
-            <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+            <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
               Email Address
             </label>
             <div className="relative">
@@ -100,15 +100,15 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email@prema.com"
-                className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white rounded-none placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground rounded-none placeholder-muted-foreground/40 focus:outline-none focus:border-accent text-sm font-mono"
               />
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
             </div>
           </div>
 
           {/* Password */}
           <div className="space-y-2">
-            <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+            <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
               Access Code
             </label>
             <div className="relative">
@@ -119,9 +119,9 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white rounded-none placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground rounded-none placeholder-muted-foreground/40 focus:outline-none focus:border-accent text-sm font-mono"
               />
-              <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+              <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
             </div>
           </div>
 
@@ -144,18 +144,18 @@ export default function LoginPage() {
 
         {/* Forgot Password */}
         <div className="flex items-center justify-between">
-          <label className="flex items-center gap-2 text-xs text-white/40">
+          <label className="flex items-center gap-2 text-xs text-muted-foreground">
             <input type="checkbox" className="w-3 h-3 accent-[#ef4444]" />
             Remember me
           </label>
-          <a href="/auth/forgot-password" className="text-xs text-[#ef4444] hover:underline">
+          <a href="/auth/forgot-password" className="text-xs text-[#ef4444] hover:underline font-semibold">
             Forgot Password?
           </a>
         </div>
 
         {/* Sign Up Link */}
-        <div className="border-t border-white/10 pt-4 text-center">
-          <p className="text-xs text-white/40">
+        <div className="border-t border-border pt-4 text-center">
+          <p className="text-xs text-muted-foreground">
             Don{"'"}t have an account?{" "}
             <a href="/auth/register" className="text-[#ef4444] hover:underline font-semibold">
               Sign Up

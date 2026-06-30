@@ -118,6 +118,7 @@ function Lightbox({ item, allItems, onClose, onNavigate }: LightboxProps) {
           src={item.src}
           alt={item.alt}
           className="max-h-[70vh] max-w-full rounded-lg object-contain shadow-2xl"
+          decoding="async"
         />
         <div className="mt-4 text-center text-white">
           <p className="text-xs uppercase tracking-widest text-white/50 mb-1">

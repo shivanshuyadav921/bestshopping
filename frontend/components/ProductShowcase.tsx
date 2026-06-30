@@ -44,37 +44,16 @@ const products: Product[] = COMPONENT_PRODUCTS.filter(p => p.isActive !== false)
 
 export default function ProductShowcase() {
   const [mounted, setMounted] = useState(false);
-  const [visibleProducts, setVisibleProducts] = useState<Set<string>>(new Set());
-  const refs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     setMounted(true);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleProducts((prev) => new Set(prev).add(entry.target.id));
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    products.forEach((product) => {
-      if (refs.current[product.id]) {
-        observer.observe(refs.current[product.id]!);
-      }
-    });
-
-    return () => observer.disconnect();
   }, []);
 
   if (!mounted) {
     return (
-      <section className="py-24 md:py-32 bg-background">
+      <section className="py-12 md:py-16 bg-background">
         <div className="container">
-          <div className="max-w-3xl mb-24">
+          <div className="max-w-3xl mb-12">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
               Manufactured Excellence
             </h2>
@@ -89,10 +68,10 @@ export default function ProductShowcase() {
   }
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-12 md:py-16 bg-background">
       <div className="container">
         {/* Section Header */}
-        <div className="max-w-3xl mb-24">
+        <div className="max-w-3xl mb-12">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
             Manufactured Excellence
           </h2>
@@ -102,17 +81,14 @@ export default function ProductShowcase() {
         </div>
 
         {/* Products */}
-        <div className="space-y-32">
+        <div className="space-y-16">
           {products.map((product, index) => {
-            const isVisible = visibleProducts.has(product.id);
+            const isVisible = true;
             const isReversed = index % 2 === 1;
 
             return (
               <div
                 key={product.id}
-                ref={(el) => {
-                  if (el) refs.current[product.id] = el;
-                }}
                 id={product.id}
                 className={`grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center transition-all duration-1000 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -128,6 +104,8 @@ export default function ProductShowcase() {
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover shadow-2xl transition-transform duration-700 hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 border border-border/50" />
                 </div>

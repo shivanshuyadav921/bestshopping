@@ -44,7 +44,7 @@ const capabilities: Capability[] = [
 
 export default function Capabilities() {
   return (
-    <section id="capabilities" className="py-24 md:py-32 bg-background">
+    <section id="capabilities" className="pt-12 pb-24 md:pt-16 md:pb-32 bg-background">
       <div className="container">
         {/* Section Header */}
         <div className="max-w-3xl mb-20">

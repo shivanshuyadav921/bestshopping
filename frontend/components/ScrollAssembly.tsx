@@ -171,7 +171,7 @@ export default function ScrollAssembly() {
   }, []);
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
+    <section className="pt-32 pb-16 bg-background relative overflow-hidden">
       <div className="container">
         {/* Section intro */}
         <div className="max-w-2xl mb-24">
@@ -259,7 +259,7 @@ export default function ScrollAssembly() {
 
         {/* Assembly complete message */}
         <motion.div
-          className="mt-32 text-center space-y-4"
+          className="mt-16 text-center space-y-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}

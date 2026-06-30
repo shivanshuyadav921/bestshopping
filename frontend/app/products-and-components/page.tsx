@@ -325,56 +325,6 @@ export default function ProductsAndComponentsPage() {
                         </section>
                     )}
 
-                {/* Industries Served */}
-                <section className="container py-16 border-t border-border">
-                    <motion.div
-                        className="text-center space-y-4 mb-12"
-                        initial={{ opacity: 0, y: initialY }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={transition}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl font-bold tracking-tight">Industries We Serve</h2>
-                        <p className="text-foreground/60 max-w-2xl mx-auto">
-                            Precision components for the most demanding industrial applications.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                        {[
-                            { icon: "🚗", name: "Automotive" },
-                            { icon: "⛽", name: "Oil & Gas" },
-                            { icon: "📦", name: "Packaging" },
-                            { icon: "🍽", name: "Food Processing" },
-                            { icon: "💊", name: "Pharmaceutical" },
-                            { icon: "🏗", name: "Steel Plants" },
-                            { icon: "⚡", name: "Power Plants" },
-                            { icon: "⛏", name: "Mining" },
-                            { icon: "🔧", name: "Heavy Engineering" },
-                            { icon: "🧵", name: "Textile" },
-                            { icon: "🤖", name: "Automation" },
-                            { icon: "⚙", name: "Special Purpose Machines" },
-                        ].map((ind) => (
-                            <button
-                                key={ind.name}
-                                onClick={() => {
-                                    handleFilterChange({
-                                        ...DEFAULT_FILTERS,
-                                        industry: [ind.name],
-                                    });
-                                    document
-                                        .getElementById("product-grid")
-                                        ?.scrollIntoView({ behavior: "smooth" });
-                                }}
-                                className="p-4 bg-card border border-border text-center hover:border-accent hover:bg-accent/5 transition-all"
-                            >
-                                <span className="text-2xl block mb-2">{ind.icon}</span>
-                                <span className="text-xs font-medium text-foreground/70">{ind.name}</span>
-                            </button>
-                        ))}
-                    </div>
-                </section>
-
                 {/* CTA Section */}
                 <section className="bg-foreground/5 border-t border-border">
                     <div className="container py-16 text-center space-y-6">

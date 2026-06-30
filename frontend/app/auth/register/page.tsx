@@ -82,7 +82,7 @@ export default function RegisterPage() {
           statusText: 'GPS Permission Denied. Fallback to manual/IP.',
         });
       },
-      { enableHighAccuracy: true, timeout: 5000 }
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 }
     );
   };
 
@@ -136,7 +136,7 @@ export default function RegisterPage() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8 relative">
       <div className="grid-pattern absolute inset-0 opacity-[0.03] pointer-events-none" />
 
-      <div className="w-full max-w-2xl space-y-8 relative z-10 border border-white/10 bg-card p-8 md:p-10 shadow-2xl my-8">
+      <div className="w-full max-w-2xl space-y-8 relative z-10 border border-border bg-card p-8 md:p-10 shadow-2xl my-8 text-foreground">
         {/* Header */}
         <div className="text-center space-y-3">
           <img
@@ -144,10 +144,10 @@ export default function RegisterPage() {
             alt="PREMA"
             className="h-12 w-12 mx-auto"
           />
-          <h2 className="text-2xl font-bold tracking-tight text-white font-display uppercase">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground font-display uppercase">
             Client Portal Registration
           </h2>
-          <p className="text-xs text-white/50 tracking-wider font-mono">
+          <p className="text-xs text-muted-foreground tracking-wider font-mono">
             PREMA MANUFACTURING OPERATING SYSTEM
           </p>
         </div>
@@ -171,7 +171,7 @@ export default function RegisterPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Name */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 Contact Name *
               </label>
               <div className="relative">
@@ -183,15 +183,15 @@ export default function RegisterPage() {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="John Doe"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* Email */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 Email Address *
               </label>
               <div className="relative">
@@ -203,15 +203,15 @@ export default function RegisterPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="name@company.com"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* Company Name */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 Company Name *
               </label>
               <div className="relative">
@@ -222,15 +222,15 @@ export default function RegisterPage() {
                   value={formData.companyName}
                   onChange={handleInputChange}
                   placeholder="Acme Corporation"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* Phone */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 Phone Number *
               </label>
               <div className="relative">
@@ -242,15 +242,15 @@ export default function RegisterPage() {
                   value={formData.contactPhone}
                   onChange={handleInputChange}
                   placeholder="+1 (555) 019-2834"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* Industry */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 Industry *
               </label>
               <div className="relative">
@@ -258,24 +258,24 @@ export default function RegisterPage() {
                   name="industry"
                   value={formData.industry}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white focus:outline-none focus:border-accent text-sm font-mono appearance-none"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground focus:outline-none focus:border-accent text-sm font-mono appearance-none"
                 >
-                  <option value="General Engineering">General Engineering</option>
-                  <option value="Aerospace">Aerospace</option>
-                  <option value="Automotive">Automotive</option>
-                  <option value="Medical Devices">Medical Devices</option>
-                  <option value="Defense">Defense</option>
-                  <option value="Robotics">Robotics</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Oil & Gas">Oil & Gas</option>
+                  <option value="General Engineering" className="bg-card text-foreground">General Engineering</option>
+                  <option value="Aerospace" className="bg-card text-foreground">Aerospace</option>
+                  <option value="Automotive" className="bg-card text-foreground">Automotive</option>
+                  <option value="Medical Devices" className="bg-card text-foreground">Medical Devices</option>
+                  <option value="Defense" className="bg-card text-foreground">Defense</option>
+                  <option value="Robotics" className="bg-card text-foreground">Robotics</option>
+                  <option value="Electronics" className="bg-card text-foreground">Electronics</option>
+                  <option value="Oil & Gas" className="bg-card text-foreground">Oil & Gas</option>
                 </select>
-                <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* Country */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 Country *
               </label>
               <div className="relative">
@@ -286,15 +286,15 @@ export default function RegisterPage() {
                   value={formData.country}
                   onChange={handleInputChange}
                   placeholder="India"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* State */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 State *
               </label>
               <div className="relative">
@@ -305,15 +305,15 @@ export default function RegisterPage() {
                   value={formData.state}
                   onChange={handleInputChange}
                   placeholder="Karnataka"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* City */}
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 City *
               </label>
               <div className="relative">
@@ -324,15 +324,15 @@ export default function RegisterPage() {
                   value={formData.city}
                   onChange={handleInputChange}
                   placeholder="Bengaluru"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
 
             {/* Password */}
             <div className="space-y-2 md:col-span-2">
-              <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+              <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                 Access Code (Password) *
               </label>
               <div className="relative">
@@ -344,24 +344,24 @@ export default function RegisterPage() {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                 />
-                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60" />
               </div>
             </div>
           </div>
 
           {/* Browser Location Section */}
-          <div className="border border-white/5 bg-white/[0.01] p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="border border-border bg-secondary/30 p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="space-y-1">
-              <span className="text-[9px] font-mono text-white/40 uppercase tracking-wider">Location Intelligence</span>
-              <p className="text-[11px] text-white/70">{locationState.statusText}</p>
+              <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider">Location Intelligence</span>
+              <p className="text-[11px] text-foreground/80">{locationState.statusText}</p>
             </div>
             <button
               type="button"
               onClick={handleShareLocation}
               disabled={locationState.loading}
-              className="py-2 px-4 border border-white/10 hover:border-accent hover:text-accent hover:bg-accent/5 text-[10px] font-bold tracking-wider uppercase text-white transition-colors duration-200 flex items-center gap-1.5 shrink-0"
+              className="py-2 px-4 border border-border hover:border-accent hover:text-accent hover:bg-accent/5 text-[10px] font-bold tracking-wider uppercase text-foreground transition-colors duration-200 flex items-center gap-1.5 shrink-0"
             >
               {locationState.loading ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -383,10 +383,10 @@ export default function RegisterPage() {
             </button>
 
             {showOptional && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border border-white/5 bg-white/[0.01] transition-all">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border border-border bg-secondary/30 transition-all">
                 {/* Address */}
                 <div className="space-y-2 md:col-span-2">
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+                  <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                     Mailing Address
                   </label>
                   <input
@@ -395,13 +395,13 @@ export default function RegisterPage() {
                     value={formData.address}
                     onChange={handleInputChange}
                     placeholder="123 Manufacturing Way, Tech City"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                    className="w-full px-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                   />
                 </div>
 
                 {/* GST Number */}
                 <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+                  <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                     GST Number
                   </label>
                   <input
@@ -410,13 +410,13 @@ export default function RegisterPage() {
                     value={formData.gstNumber}
                     onChange={handleInputChange}
                     placeholder="29AAAAA0000A1Z5"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                    className="w-full px-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                   />
                 </div>
 
                 {/* Website */}
                 <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+                  <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                     Corporate Website
                   </label>
                   <input
@@ -425,13 +425,13 @@ export default function RegisterPage() {
                     value={formData.website}
                     onChange={handleInputChange}
                     placeholder="https://company.com"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                    className="w-full px-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                   />
                 </div>
 
                 {/* LinkedIn */}
                 <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+                  <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                     LinkedIn Profile URL
                   </label>
                   <input
@@ -440,13 +440,13 @@ export default function RegisterPage() {
                     value={formData.linkedIn}
                     onChange={handleInputChange}
                     placeholder="https://linkedin.com/company/abc"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                    className="w-full px-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                   />
                 </div>
 
                 {/* PIN Code */}
                 <div className="space-y-2">
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+                  <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                     PIN / ZIP Code
                   </label>
                   <input
@@ -455,13 +455,13 @@ export default function RegisterPage() {
                     value={formData.pinCode}
                     onChange={handleInputChange}
                     placeholder="560001"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                    className="w-full px-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                   />
                 </div>
 
                 {/* Additional Notes */}
                 <div className="space-y-2 md:col-span-2">
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-white/50">
+                  <label className="block text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
                     Additional Notes / Engineering Preferences
                   </label>
                   <textarea
@@ -470,7 +470,7 @@ export default function RegisterPage() {
                     onChange={handleInputChange}
                     placeholder="E.g. Prefers CNC machining tolerances in metric Ra 0.8"
                     rows={3}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-accent text-sm font-mono"
+                    className="w-full px-4 py-3 bg-transparent border border-border text-foreground placeholder-muted-foreground/45 focus:outline-none focus:border-accent text-sm font-mono"
                   />
                 </div>
               </div>
@@ -495,7 +495,7 @@ export default function RegisterPage() {
         </form>
 
         <div className="text-center pt-2">
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-muted-foreground">
             Already have an account?{' '}
             <a href="/auth/login" className="text-accent hover:underline font-bold uppercase tracking-wider ml-1">
               Sign In

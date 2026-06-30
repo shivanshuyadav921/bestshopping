@@ -9,16 +9,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2 group">
               <Image
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663778233019/HgWQygy6hcEjZgykeuoFnG/logo-prema-engineering-ayPpa7XkJuSRb6D4x9AaNz.webp"
                 alt="PREMA"
                 width={32}
                 height={32}
-                className="h-8 w-8"
+                className="h-8 w-8 transition-transform duration-300 group-hover:scale-105"
               />
               <span className="font-display font-bold">PREMA</span>
-            </div>
+            </a>
             <p className="text-sm text-foreground/60">
               Precision engineering for critical manufacturing.
             </p>
@@ -29,17 +29,17 @@ export default function Footer() {
             <h4 className="font-semibold text-sm tracking-widest uppercase">Products</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
               <li>
-                <a href="#products" className="hover:text-foreground transition-colors">
+                <a href="/#products" className="hover:text-foreground transition-colors">
                   Precision Shafts
                 </a>
               </li>
               <li>
-                <a href="#products" className="hover:text-foreground transition-colors">
+                <a href="/#products" className="hover:text-foreground transition-colors">
                   Custom Gears
                 </a>
               </li>
               <li>
-                <a href="#products" className="hover:text-foreground transition-colors">
+                <a href="/#products" className="hover:text-foreground transition-colors">
                   Guide Rails
                 </a>
               </li>
@@ -51,17 +51,17 @@ export default function Footer() {
             <h4 className="font-semibold text-sm tracking-widest uppercase">Company</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
               <li>
-                <a href="#capabilities" className="hover:text-foreground transition-colors">
+                <a href="/#capabilities" className="hover:text-foreground transition-colors">
                   Capabilities
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-foreground transition-colors">
+                <a href="/#contact" className="hover:text-foreground transition-colors">
                   Contact
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="/" className="hover:text-foreground transition-colors">
                   Certifications
                 </a>
               </li>
@@ -73,17 +73,17 @@ export default function Footer() {
             <h4 className="font-semibold text-sm tracking-widest uppercase">Legal</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="/" className="hover:text-foreground transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="/" className="hover:text-foreground transition-colors">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="/" className="hover:text-foreground transition-colors">
                   Sitemap
                 </a>
               </li>

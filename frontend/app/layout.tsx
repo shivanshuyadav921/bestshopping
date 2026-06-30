@@ -3,9 +3,9 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { PwaProvider } from "@/contexts/PwaContext";
-import dynamic from "next/dynamic";
 import { Toaster } from "sonner";
 import "./globals.css";
+import dynamic from "next/dynamic";
 
 const CommandPalette = dynamic(() => import("@/components/CommandPalette"));
 const ShortcutCheatSheet = dynamic(() => import("@/components/ShortcutCheatSheet"));
@@ -74,7 +74,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
-        <SessionProvider>
+        <SessionProvider refetchOnWindowFocus={false}>
           <ThemeProvider switchable={true} defaultTheme="dark">
             <PwaProvider>
               {children}
